@@ -1,0 +1,30 @@
+# Maven
+target/
+*.ser
+*.ec
+ 
+# IntelliJ Idea
+.idea/
+out/
+*.ipr
+*.iws
+*.iml
+ 
+# Eclipse
+.class
+.classpath
+.project
+.settings/
+.metadata/
+ 
+# OS X
+.DS_Store
+/pom.xml
+/bin/
+src/main/webapp/stc/customer/script/common/spinner.js
+*.class
+ 
+# Package Files #
+*.jar
+*.war
+*.ear
