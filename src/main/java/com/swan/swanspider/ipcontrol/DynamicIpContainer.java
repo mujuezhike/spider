@@ -13,7 +13,7 @@ public class DynamicIpContainer {
 	public static List<String> dynamicips = new ArrayList<String>();
 	
 	/** 最大ip数量  **/
-	public static Integer maxLiveIp = 10;
+	public static Integer maxLiveIp = 20;
 
 	/** 下个等待获取需要变换的ip位置   **/
 	private static Integer nextchangeIpCount = 0;
@@ -29,25 +29,25 @@ public class DynamicIpContainer {
 		new Thread(new IpChanger()).start();
 		
 		//调试使用
-		for(;;){
-		
-		try {
-			Thread.sleep(10000);
-			for(int i=0;i<dynamicips.size();i++){
-				
-				System.out.print(dynamicips.get(i) + "  ");
-				
-			}
-			System.out.print(nextchangeIpCount);
-			System.out.println();
-			
-		} catch (Exception e) {
-			
-			
-			
-			e.printStackTrace();
-		}
-		}
+//		for(;;){
+//		
+//		try {
+//			Thread.sleep(10000);
+//			for(int i=0;i<dynamicips.size();i++){
+//				
+//				System.out.print(dynamicips.get(i) + "  ");
+//				
+//			}
+//			System.out.print(nextchangeIpCount);
+//			System.out.println();
+//			
+//		} catch (Exception e) {
+//			
+//			
+//			
+//			e.printStackTrace();
+//		}
+//		}
 		
 	}
 	

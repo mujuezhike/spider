@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class WordStore {
 	
 	private static int arealistpointer;
 	//swanspider\src\main\resources\word\ need change
-	public static String dirPath = "C:\\zklist\\word\\";
+	public static String dirPath = "E:\\getpage\\word\\";
 	
 	public static void init() {
 		
@@ -90,8 +91,10 @@ public class WordStore {
 	} 
 	
 	public static String getNextWord() {
+		String returnString = URLEncoder.encode(wordlist.get(wordlistpointer))+"%20"+URLEncoder.encode(arealist.get(arealistpointer));
 		
-		String returnString = wordlist.get(wordlistpointer) + " " + arealist.get(arealistpointer);
+		returnString = returnString.replace("%EF%BB%BF", "");
+		//String returnString = wordlist.get(wordlistpointer) + "%20" + arealist.get(arealistpointer);
 		
 		if(wordlistpointer<wordlist.size()-1) {
 			
