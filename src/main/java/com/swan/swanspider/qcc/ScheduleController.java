@@ -11,7 +11,9 @@ import com.swan.swanspider.word.WordStore;
 
 public class ScheduleController {
 	
-	final private static int TASK_MAX_THREAD = 12;
+	final private static int TASK_MAX_THREAD = 15;
+	
+	public static ExecutorService fixedThreadPool = Executors.newFixedThreadPool(TASK_MAX_THREAD);  
 	
 	public static void init(){
 		
@@ -22,12 +24,14 @@ public class ScheduleController {
 	public static void main(String[] args) throws InterruptedException{
 		// TODO Auto-generated method stub
 		
+		//Ip切换器  :启动
 		DynamicIpContainer.init();
 		
+		//单词库  :启动
 		WordStore.init();
 		
 		Thread.sleep(35000);
-		ExecutorService fixedThreadPool = Executors.newFixedThreadPool(TASK_MAX_THREAD);  
+		//ExecutorService fixedThreadPool = Executors.newFixedThreadPool(TASK_MAX_THREAD);  
 		  
 			for (;;) {  
 				//logger.info("boforestart:"+index);
@@ -37,7 +41,7 @@ public class ScheduleController {
 				//System.out.println(threadCount);
 				
 				if(threadCount < TASK_MAX_THREAD){
-					SearchQCCCompanyTask task = new SearchQCCCompanyTask();
+					SearchQCCCompanyListTask task = new SearchQCCCompanyListTask();
 					String[] srr = getNextURLsFromFileName();
 					Random rd = new Random();
 					int ioe = rd.nextInt(5);

@@ -20,7 +20,7 @@ public class WordStore {
 	
 	private static int arealistpointer;
 	//swanspider\src\main\resources\word\ need change
-	public static String dirPath = "E:\\getpage\\word\\";
+	public static String dirPath = "C:\\getpage\\word\\";
 	
 	public static void init() {
 		

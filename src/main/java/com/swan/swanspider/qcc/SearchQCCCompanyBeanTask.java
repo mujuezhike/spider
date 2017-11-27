@@ -5,8 +5,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Random;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import com.gargoylesoftware.htmlunit.BrowserVersion;
 import com.gargoylesoftware.htmlunit.CookieManager;
@@ -16,9 +14,9 @@ import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.gargoylesoftware.htmlunit.util.Cookie;
 import com.swan.swanspider.ipcontrol.DynamicIpContainer;
 
-public class SearchQCCCompanyTask implements Runnable{
+public class SearchQCCCompanyBeanTask implements Runnable{
 	
-	private final static String saveBasePath = "E:\\getpage\\";
+	private final static String saveBasePath = "C:\\getpage\\bean\\";
 
 	private String[] strs = null;
 	
@@ -74,7 +72,6 @@ public class SearchQCCCompanyTask implements Runnable{
 			}
 		}
 		
-		/** 切换新文件     **/
 		//ScheduleController.turnNextFileName();
 		
 	}
@@ -101,16 +98,15 @@ public class SearchQCCCompanyTask implements Runnable{
 
 		CookieManager ck = new CookieManager();
 		Cookie cookie = new Cookie("www.qichacha.com", "hasShow", "1");
-		
-		Cookie cookie2 = new Cookie("g.alicdn.com", "_uab_collina", "151140856485176110429407");
-		Cookie cookie3 = new Cookie("www.qichacha.com", "_uab_collina", "151142069835265994204304");
-//		Cookie cookie4 = new Cookie("g.alicdn.com", "_umdata", "A502B1276E6D5FEF3001584AF99821BE2459495D775ECD5EE6C9D54B9D75731688B240F034C62EA1CD43AD3E795C914C2053C5B223499DBB86DB1D634ACDF7BC");
-//		Cookie cookie5 = new Cookie("www.qichacha.com", "_umdata", "ED82BDCEC1AA6EB9579BA636C6A89D2ECE6D565E7920CF2FD3724230DF3DB73C452052A5B795CBB1CD43AD3E795C914CEC86D9ACAB3B7341FDBC81787707D5A5");
+		Cookie cookie2 = new Cookie("www.qichacha.com", "acw_tc", "AQAAACUUhXFYMgsAabld34bT2498dGZe");
+		Cookie cookie3 = new Cookie("www.qichacha.com", "_uab_collina", "151174962106136758594117");
+		Cookie cookie4 = new Cookie("www.qichacha.com", "zg_de1d1a35bfa24ce29bbf2c7eb17e6c4f", "%7B%22sid%22%3A%201511749613740%2C%22updated%22%3A%201511751148718%2C%22info%22%3A%201511749613744%2C%22superProperty%22%3A%20%22%7B%7D%22%2C%22platform%22%3A%20%22%7B%7D%22%2C%22utm%22%3A%20%22%7B%7D%22%2C%22referrerDomain%22%3A%20%22www.baidu.com%22%7D");
+		Cookie cookie5 = new Cookie("www.qichacha.com", "zg_did", "%7B%22did%22%3A%20%2215ffb4c78571ce-060d3ebbbffa58-5e183017-100200-15ffb4c7858d7%22%7D");
 		ck.addCookie(cookie);
 		ck.addCookie(cookie2);
 		ck.addCookie(cookie3);
-//		ck.addCookie(cookie4);
-//		ck.addCookie(cookie5);
+		ck.addCookie(cookie4);
+		ck.addCookie(cookie5);
 		webClient.setCookieManager(ck);
 		
 		webClient.getOptions().setCssEnabled(false);//origin true
@@ -126,20 +122,10 @@ public class SearchQCCCompanyTask implements Runnable{
 			Thread.sleep(200);
 			System.out.println("qcc:"+url);
 			String s = page.asXml();
-			if(s.contains("font-15 text-dark pull-left m-l")){
-				 Pattern pattern = Pattern.compile("<a href=\"(.+?)\" target=\"_blank\" class=\"ma_h1\">"); 
-				 Matcher matcher = pattern.matcher(s);   
-				String num = "";
-	        		while(matcher.find()){
-	        			
-		                System.out.println(matcher.group(1));
-		                
-		                num += matcher.group(1);
-		                num += "\r\n";
-		                System.out.println(num);
-		                
-	        		}
-				getFileFromBytes(num,saveBasePath+codenum+".html");
+			//getFileFromBytes(s,saveBasePath+codenum+".html");
+			if(s.contains("ma_line1")){
+				 
+				getFileFromBytes(s,saveBasePath+codenum+".html");
 				webClient.close();
 				return 1l;
 				
@@ -161,7 +147,7 @@ public class SearchQCCCompanyTask implements Runnable{
 	}
 	
 	 /**  
-	  * 将String数据存为文件  
+	  * 灏哠tring鏁版嵁瀛樹负鏂囦欢  
 	  */  
 	 public static File getFileFromBytes(String str,String path) {  
 	     
