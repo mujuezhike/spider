@@ -13,7 +13,7 @@ public class DynamicIpContainer {
 	public static List<String> dynamicips = new ArrayList<String>();
 	
 	/** 最大ip数量  **/
-	public static Integer maxLiveIp = 20;
+	public static Integer maxLiveIp = 12;
 
 	/** 下个等待获取需要变换的ip位置   **/
 	private static Integer nextchangeIpCount = 0;

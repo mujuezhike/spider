@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import com.gargoylesoftware.htmlunit.BrowserVersion;
 import com.gargoylesoftware.htmlunit.CookieManager;
@@ -124,8 +126,20 @@ public class SearchQCCCompanyTask implements Runnable{
 			Thread.sleep(200);
 			System.out.println("qcc:"+url);
 			String s = page.asXml();
-			if(s.contains("ma_h1")){
-				getFileFromBytes(s,saveBasePath+codenum+".html");
+			if(s.contains("font-15 text-dark pull-left m-l")){
+				 Pattern pattern = Pattern.compile("<a href=\"(.+?)\" target=\"_blank\" class=\"ma_h1\">"); 
+				 Matcher matcher = pattern.matcher(s);   
+				String num = "";
+	        		while(matcher.find()){
+	        			
+		                System.out.println(matcher.group(1));
+		                
+		                num += matcher.group(1);
+		                num += "\r\n";
+		                System.out.println(num);
+		                
+	        		}
+				getFileFromBytes(num,saveBasePath+codenum+".html");
 				webClient.close();
 				return 1l;
 				
@@ -138,7 +152,7 @@ public class SearchQCCCompanyTask implements Runnable{
 			
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		webClient.close();
 		//Thread.sleep(2000);
