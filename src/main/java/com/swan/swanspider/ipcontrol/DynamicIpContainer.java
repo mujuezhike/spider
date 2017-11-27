@@ -1,6 +1,7 @@
 package com.swan.swanspider.ipcontrol;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -10,7 +11,7 @@ import java.util.List;
 public class DynamicIpContainer {
 	
 	/** ip列表  **/
-	public static List<String> dynamicips = new ArrayList<String>();
+	public static List<String> dynamicips = Collections.synchronizedList(new ArrayList<String>());
 	
 	/** 最大ip数量  **/
 	public static Integer maxLiveIp = 12;

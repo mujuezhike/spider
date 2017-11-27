@@ -53,7 +53,7 @@ public class SearchQCCCompanyBeanTask implements Runnable{
 					s++;
 					
 				}else{
-					System.out.println("changeip::}}");
+					System.out.println("changeip::}3}");
 					eer++;
 					if(eer >= DynamicIpContainer.dynamicips.size()){
 						eer = 0;
@@ -64,7 +64,7 @@ public class SearchQCCCompanyBeanTask implements Runnable{
 			} catch (Exception e) {
 				
 				e.printStackTrace();
-				System.out.println("changeip::}}");
+				System.out.println("changeip::}4}");
 				eer++;
 				if(eer >= DynamicIpContainer.dynamicips.size()){
 					eer = 0;
@@ -111,9 +111,9 @@ public class SearchQCCCompanyBeanTask implements Runnable{
 		
 		webClient.getOptions().setCssEnabled(false);//origin true
 		webClient.getOptions().setJavaScriptEnabled(false);//origin true
-		webClient.getOptions().setTimeout(8000);
-		webClient.setJavaScriptTimeout(8000);
-		webClient.getJavaScriptEngine().setJavaScriptTimeout(8000);
+		webClient.getOptions().setTimeout(5000);
+		webClient.setJavaScriptTimeout(5000);
+		webClient.getJavaScriptEngine().setJavaScriptTimeout(5000);
 
 		String codenum = url.substring(url.lastIndexOf("/")+1);
 		codenum = codenum.substring(codenum.lastIndexOf("=")+1);
@@ -138,7 +138,7 @@ public class SearchQCCCompanyBeanTask implements Runnable{
 			
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
-			//e.printStackTrace();
+			e.printStackTrace();
 		}
 		webClient.close();
 		//Thread.sleep(2000);

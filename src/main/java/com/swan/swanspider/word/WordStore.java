@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class WordStore {
@@ -63,8 +64,9 @@ public class WordStore {
 	}
 	
 	private static List<String> getListFromFile(File file){
+		//线程安全list
+		List<String> list = Collections.synchronizedList(new ArrayList<String>());
 		
-		List<String> list = new ArrayList<String>();
 		BufferedReader reader = null;
         try {
         	String charset = getCharset(file);
@@ -91,8 +93,18 @@ public class WordStore {
 	} 
 	
 	public static String getNextWord() {
-		String returnString = URLEncoder.encode(wordlist.get(wordlistpointer))+"%20"+URLEncoder.encode(arealist.get(arealistpointer));
-		
+		String m1 = wordlist.get(wordlistpointer);
+		String m2 = arealist.get(arealistpointer);
+		if(m1==null||m1.equals("")) {
+			wordlistpointer = 0;
+			m1 = wordlist.get(0);
+		}
+		if(m2==null||m2.equals("")) {
+			arealistpointer = 0;
+			m2 = arealist.get(0);
+		}
+		String returnString = URLEncoder.encode(m1)+"%20"+URLEncoder.encode(m2);
+		System.out.println(m1+"::"+m2);
 		returnString = returnString.replace("%EF%BB%BF", "");
 		//String returnString = wordlist.get(wordlistpointer) + "%20" + arealist.get(arealistpointer);
 		

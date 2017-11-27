@@ -43,8 +43,12 @@ public class IpChanger implements Runnable{
 		        raw.close();
 				
 		        String res = new String(data, "UTF-8");
-			
-				DynamicIpContainer.setDIp(res);
+			    if( res!=null && !res.contains("")) {
+			    
+			    	DynamicIpContainer.setDIp(res);
+			    	
+			    }
+				
 				
 				Thread.sleep(5000);	
 				

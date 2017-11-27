@@ -55,7 +55,7 @@ public class SearchQCCCompanyListTask implements Runnable{
 					s++;
 					
 				}else{
-					System.out.println("changeip::}}");
+					System.out.println("changeip::}1}");
 					eer++;
 					if(eer >= DynamicIpContainer.dynamicips.size()){
 						eer = 0;
@@ -66,7 +66,7 @@ public class SearchQCCCompanyListTask implements Runnable{
 			} catch (Exception e) {
 				
 				e.printStackTrace();
-				System.out.println("changeip::}}");
+				System.out.println("changeip::}2}");
 				eer++;
 				if(eer >= DynamicIpContainer.dynamicips.size()){
 					eer = 0;
@@ -149,7 +149,7 @@ public class SearchQCCCompanyListTask implements Runnable{
 				
 				Random rd = new Random();
 				int ioe = rd.nextInt(5);
-				if(srr!=null && srr.length>0){
+				if(srr!=null && srr.length>0 && srr[0]!=null && !srr[0].equals("")){
 					task.setStrs(srr);
 					task.setEer(ioe);
 					ScheduleController.fixedThreadPool.execute(task);
@@ -165,7 +165,7 @@ public class SearchQCCCompanyListTask implements Runnable{
 			
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
-			//e.printStackTrace();
+			e.printStackTrace();
 		}
 		webClient.close();
 		//Thread.sleep(2000);
